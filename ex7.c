@@ -1,4 +1,4 @@
-/*#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 struct Date {
@@ -6,18 +6,27 @@ struct Date {
 };
 
 int main() {
-    struct Date *ptr;
 
-    printf("Enter day : ");
-    scanf("%d", &(*ptr).day);
+    struct Date *ptr = (struct Date*)malloc(sizeof(struct Date));
 
-    printf("Enter month : ");
-    scanf("%d", &(*ptr).month);
-5
-    printf("Enter year : ");
-    scanf("%d", &(*ptr).year);
+    if (ptr == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
 
-    printf("The date is: %02d/%02d/%d\n", (*ptr).day, (*ptr).month, (*ptr).year);
+    printf("Enter day: ");
+    scanf("%d", &ptr->day);    //same as : (*ptr).day
+
+    printf("Enter month: ");
+    scanf("%d", &ptr->month);
+
+    printf("Enter year: ");
+    scanf("%d", &ptr->year);
+
+
+    printf("La date: %02d/%02d/%d\n", ptr->day, ptr->month, ptr->year);
+
+    free(ptr);
 
     return 0;
 }
